@@ -1,11 +1,12 @@
 const sgMail = require('@sendgrid/mail')
-
+const dotenv = require('dotenv');
+dotenv.config();
 
 
 
 
 const send_mail = async (name,message)=>{
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgMail.setApiKey(process.env.API_KEY);
     const msg = {
         to: 'sb78639@gmail.com', // Change to your recipient
         from: 'reactgraminfo@gmail.com', // Change to your verified sender

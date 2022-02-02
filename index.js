@@ -3,7 +3,8 @@ const express = require('express');
 const Feedback = require('./models/Feedback');
 const send_mail = require('./utils/sendmail');
 const connectDB = require('./db/db_connection');
-
+const dotenv = require('dotenv');
+dotenv.config();
 
 
 const app = express();
@@ -29,7 +30,7 @@ app.get('/', async (req, res) => {
     const {name,email,message} = req.body;
     const feedback = new Feedback({name,email,message});
     await feedback.save();
-    const mailsend = await send_mail(email,name,message);
+    const mailsend = await send_mail(name,message);
     if(mailsend){
         res.send({
             status: 'success',
